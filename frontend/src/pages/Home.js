@@ -1,6 +1,7 @@
 import { useEffect, useReducer } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logger from 'use-reducer-logger';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -16,7 +17,7 @@ const reducer = (state, action) => {
 };
 
 export default function Home() {
-  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],
     loading: true,
     error: "",
