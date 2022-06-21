@@ -1,3 +1,5 @@
+
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -16,7 +18,7 @@ function App() {
                 <Navbar.Brand>amazona</Navbar.Brand>
               </LinkContainer>
             </Container>
-          </Navbar>
+          </Navbar> 
         </header>
         <main>
           <Container>
