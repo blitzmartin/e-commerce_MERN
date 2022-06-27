@@ -29,46 +29,46 @@ const reducer = (state, action) => {
 };
 
 export default function Products() {
-  const params = useParams();
-  const { slug } = params;
+    const params = useParams();
+    const { slug } = params;
 
-  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
-    product: [],
-    loading: true,
-    error: "",
-  });
+    const [{ product, loading, error }, dispatch] = useReducer(reducer, {
+      product: [],
+      loading: true,
+      error: "",
+    });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: "FETCH_REQUEST" });
-      try {
-        const result = await axios.get(`/api/products/slug/${slug}`);
-        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
-      } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: getError(err)});
+    useEffect(() => {
+      const fetchData = async () => {
+        dispatch({ type: "FETCH_REQUEST" });
+        try {
+          const result = await axios.get(`/api/products/slug/${slug}`);
+          dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+        } catch (err) {
+          dispatch({ type: "FETCH_FAIL", payload: getError(err)});
+        }
+      };
+      fetchData();
+    }, [slug]);
+
+    const {state, dispatch: ctxDispatch} = useContext(Store);
+    const { cart } = state;
+
+    const addToCartHandler = async() => {
+      const existItem = cart.cartItems.find( item => item._id === product.id);
+      const quantity = existItem ? existItem.quantity + 1 : 1;
+      const { data } = await axios.get(`/api/products/${product._id}`);
+      if (data.countInStock < quantity) {
+        window.alert('Sorry. Product is out of stock');
+        return;
       }
-    };
-    fetchData();
-  }, [slug]);
-
-  const {state, dispatch: ctxDispatch} = useContext(Store);
-  const { cart } = state;
-
-  const addToCartHandler = async() => {
-    const existItem = cart.cartItems.find( item => item._id === product.id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
+      ctxDispatch({
+        type: 'CART_ADD_ITEM', 
+        payload: {...product, quantity }
+      })
     }
-    ctxDispatch({
-      type: 'CART_ADD_ITEM', 
-      payload: {...product, quantity }
-    })
-  }
 
-  return loading ? (
+    return loading ? (
       <LoadingBox />
     ) : error ? (
       <MessageBox variant="danger">{error}</MessageBox>

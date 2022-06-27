@@ -24,7 +24,7 @@ function reducer(state, action) {
             return {...state, cart: {
                 ...state.cart, cartItems
             }};
-            default:
+        default:
                 return state;
     }
 }
