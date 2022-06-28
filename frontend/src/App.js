@@ -8,6 +8,7 @@ import Badge from 'react-bootstrap/Badge';
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
 import { Store } from './Store';
+import Cart from './pages/Cart'
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/product/:slug" element={<Products />} />
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           </Container>
         </main>
