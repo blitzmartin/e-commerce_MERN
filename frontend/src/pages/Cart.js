@@ -14,6 +14,7 @@ export default function Cart() {
   const {
     cart: { cartItems },
   } = state;
+
   return (
     <div>
       <Helmet>
@@ -44,7 +45,10 @@ export default function Cart() {
                         <i className="fas fa-minus-circle"></i>
                       </Button>{" "}
                       <span>{item.quantity}</span>{" "}
-                      <Button variant="light" disabled={item.quantity === 1}>
+                      <Button 
+                        variant="light" 
+                        disabled={item.quantity === item.countInStock}
+                        >
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
@@ -84,7 +88,6 @@ export default function Cart() {
                         </Button>
                     </div>
                     </ListGroup.Item>
-
                     </ListGroup> 
                 </Card.Body>
             </Card>
