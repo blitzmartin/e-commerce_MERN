@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
 import { Store } from './Store';
 import Cart from './pages/Cart'
+import SignIn from './pages/SignIn';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/product/:slug" element={<Products />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/signin" element={<SignIn />} />
             </Routes>
           </Container>
         </main>
