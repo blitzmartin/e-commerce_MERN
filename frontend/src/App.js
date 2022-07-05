@@ -13,6 +13,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Store } from "./Store";
 import Cart from "./pages/Cart";
 import SignIn from "./pages/SignIn";
+import ShippingAddress from "./pages/ShippingAddress";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -21,6 +22,7 @@ function App() {
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT '});
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingAddress');
   }
 
   return (
@@ -75,6 +77,7 @@ function App() {
               <Route path="/product/:slug" element={<Products />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/signin" element={<SignIn />} />
+              <Route path="/shipping" element={<ShippingAddress />} />
             </Routes>
           </Container>
         </main>
