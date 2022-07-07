@@ -16,6 +16,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ShippingAddress from "./pages/ShippingAddress";
 import PaymentMethod from "./pages/PaymentMethod";
+import PlaceOrder from "./pages/PlaceOrder";
 
 function App() {
 
@@ -84,6 +85,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/shipping" element={<ShippingAddress />} />
               <Route path="/payment" element={<PaymentMethod />} />
+              <Route path="/placeorder" element={<PlaceOrder />} />
             </Routes>
           </Container>
         </main>

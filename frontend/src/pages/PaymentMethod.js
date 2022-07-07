@@ -27,7 +27,7 @@ export default function PaymentMethod() {
         e.preventDefault();
         ctxDispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName });
         localStorage.setItem('paymentMethod', paymentMethodName);
-        navigate('/placeholder');
+        navigate('/placeorder');
     }
 
   return (
@@ -35,7 +35,7 @@ export default function PaymentMethod() {
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
       <div className="container small-container">
         <Helmet>
-          <title>Paument Method</title>
+          <title>Payment Method</title>
         </Helmet>
         <h1 className="my-3">Payment Method</h1>
         <Form onSubmit={submitHandler}>
